@@ -15,7 +15,8 @@ CreateSessionComponent,
 SessionListComponent,
 DurationPipe,
 UpvoteComponent,
-VoterService
+VoterService,
+LocationValidator
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import {NavBarComponent} from "./nav/navbar.component";
@@ -54,6 +55,7 @@ declare let jQuery: Object;
         SimpleModalComponent,
         UpvoteComponent,
         ModalTriggerDirective,
+        LocationValidator,
         DurationPipe
     ],
     providers: [
