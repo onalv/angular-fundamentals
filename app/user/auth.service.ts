@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import {IUser} from "./user.model";
+import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class AuthService {
@@ -47,5 +48,19 @@ export class AuthService {
     updateCurrentUser(firstName: string, lastName: string) {
         this.currentUser.firstName = firstName;
         this.currentUser.lastName = lastName;
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.put(`/api/users/${this.currentUser.id}`, JSON.stringify(this.currentUser), options);
+    }
+
+    logout() {
+        this.currentUser = undefined;
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post('/api/logout', JSON.stringify({}), options);
     }
 }
